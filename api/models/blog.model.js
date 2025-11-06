@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//Blog model that connect with blog deatils and blog
 const blogSchema = new mongoose.Schema({
     author:{
         type: mongoose.Schema.Types.ObjectId,
