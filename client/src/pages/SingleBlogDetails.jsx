@@ -5,8 +5,12 @@ import getEnv from "@/helpers/getEnv";
 import { useFetch } from "@/hooks/useFetch";
 import { Avatar } from "@radix-ui/react-avatar";
 import { decode } from "entities";
+import moment from "moment";
 import React from "react";
 import { useParams } from "react-router-dom";
+import { BsCalendar2DateFill } from "react-icons/bs";
+import CommentCount from "@/components/CommentCount";
+import LikeCount from "@/components/LikeCount";
 
 const SingleBlogDetails = () => {
   const { blog } = useParams();
@@ -32,8 +36,17 @@ const SingleBlogDetails = () => {
                 <Avatar className="w-6 rounded">
                   <AvatarImage src={data.blog.author.avatar} />
                 </Avatar>
-                <span>{data.blog.author.name}</span>
+                <div>
+                    <p className="font-bold">{data.blog.author.name}</p>
+                    <p>Date:{moment(data.blog.createdAt).format('DD-MM-YYYY')}</p>
+                </div>
               </div>
+
+              <div className="flex justify-between items-center gap-5">
+                <LikeCount props={{blogid: data.blog._id }}/>
+                <CommentCount props={{blogid: data.blog._id}}/>
+              </div>
+
             </div>
             <div className="my-5 w-xl">
               <img src={data.blog.featuredImage} className="rounded" />

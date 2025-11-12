@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 //Blog model that connect with blog deatils and blog
-const commentSchema = new mongoose.Schema({
-    user:{
+const likeSchema = new mongoose.Schema({
+    userid:{
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User'
@@ -12,14 +12,9 @@ const commentSchema = new mongoose.Schema({
         required: true,
         ref: 'Blog'
     },
-    comment: {
-        type: String,
-        required: true,
-        trim: true
-    },
    
 
 },{timestamps: true})
 
-const Comment = mongoose.model('Comment', commentSchema, 'comments')
-export default Comment
+const BlogLike = mongoose.model('BlogLike', likeSchema, 'bloglikes')
+export default BlogLike
