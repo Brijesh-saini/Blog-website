@@ -1,3 +1,4 @@
+import Comment from "@/components/Comment";
 import Loading from "@/components/Loading";
 import { AvatarImage } from "@/components/ui/avatar";
 import getEnv from "@/helpers/getEnv";
@@ -14,7 +15,7 @@ const SingleBlogDetails = () => {
     {
       method: "get",
       credentials: "include",
-      //    body: JSON.stringify({blog})
+      
     }
   );
   if (loading) return <Loading />;
@@ -23,19 +24,29 @@ const SingleBlogDetails = () => {
     <div className="flex justify-between gap-20 ">
       {data && data.blog && (
         <>
-          <div className='border rounded w-[70%] p-5'>
+          <div className="border rounded w-[70%] p-5">
             <h1 className="text-2xl font-bold mb-5">{data.blog.title}</h1>
 
             <div className="flex justify-between items-center">
               <div className="flex justify-between items-center gap-5">
-                    <Avatar className='w-6 rounded'>
-                        <AvatarImage src={data.blog.author.avatar} />
-                    </Avatar>
-                    <span>{data.blog.author.name}</span>
+                <Avatar className="w-6 rounded">
+                  <AvatarImage src={data.blog.author.avatar} />
+                </Avatar>
+                <span>{data.blog.author.name}</span>
               </div>
             </div>
-            <div className="my-5"><img src={data.blog.featuredImage} className="rounded"/></div>
-            <div dangerouslySetInnerHTML={{__html: decode(data.blog.blogContent) || ''}}></div>
+            <div className="my-5 w-xl">
+              <img src={data.blog.featuredImage} className="rounded" />
+            </div>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: decode(data.blog.blogContent) || "",
+              }}
+            ></div>
+            <div className="border-t mt-5 pt-5">
+              <Comment props={{ blogid: data.blog._id }} />
+            </div>
+           
           </div>
         </>
       )}

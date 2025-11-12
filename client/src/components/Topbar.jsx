@@ -76,7 +76,7 @@ const Topbar = () => {
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar>
-                <AvatarImage src={user.user?.Avatar || usericon} />
+                <AvatarImage src={user.user?.avatar || usericon} />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
