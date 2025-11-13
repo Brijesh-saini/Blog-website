@@ -19,7 +19,10 @@ const Index = () => {
   return (
     <div className="grid grid-cols-3 gap-10">
       {blogData && blogData.blog.length > 0 ? (
-        blogData.blog.map((blog) => <BlogCard key={blog} props={blog} />)
+        // Use a stable unique key (prefer _id or id). Avoid passing the whole object as key
+        blogData.blog.map((blog) => (
+          <BlogCard key={blog._id || blog.id} props={blog} />
+        ))
       ) : (
         <div>Data Not found</div>
       )}

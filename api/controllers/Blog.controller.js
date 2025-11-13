@@ -2,6 +2,7 @@ import cloudinary from "../config/cloudinary.js";
 import { handleError } from "../helpers/handleError.js";
 import Blog from "../models/blog.model.js";
 import { encode} from 'entities'
+import Category from "../models/category.model.js";
 
 export const addBlog = async (req, res, next) => {
   try {
@@ -125,6 +126,23 @@ export const getBlog = async(req, res, next) =>{
     const blog = await Blog.findOne({slug}).populate('author','name avatar role').populate('category','name slug').lean().exec()
     res.status(200).json({
         blog
+    })
+  } catch (error) {
+    next(handleError(500, error.message));
+  }
+}
+
+export const getRelatedBlog = async(req, res, next) =>{
+  try {
+    const {category, blog } = req.params
+    const categoryData = await Category.findOne({slug: category})
+    if(!categoryData){
+      return next(404, 'Category data not found.')
+    }
+    const categoryId = categoryData._id
+    const relatedBlog = await Blog.find({category: categoryId, slug:{$ne: blog}}).lean().exec()
+    res.status(200).json({
+      relatedBlog
     })
   } catch (error) {
     next(handleError(500, error.message));

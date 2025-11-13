@@ -56,7 +56,7 @@ const Topbar = () => {
   return (
     <div className="flex justify-between items-center h-16 fixed w-full z-20 bg-white px-5 border-b">
       <div>
-        <img src={logo} />
+        <img src={logo}  />
       </div>
       {/* Search Box */}
       <div className="w-[500px]">
