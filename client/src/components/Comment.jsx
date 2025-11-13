@@ -53,6 +53,12 @@ const Comment = ({props}) => {
             }
             setNewComment(data.comment)
             form.reset()
+            // Dispatch a DOM event so other components (like CommentCount) can update immediately
+            try{
+              window.dispatchEvent(new CustomEvent('commentAdded', { detail: { blogid: props.blogid, comment: data.comment } }))
+            }catch(e){
+              // ignore if dispatching fails in some environments
+            }
             showToast('success', data.message);
           } catch (error) {
             showToast('error', error.message);

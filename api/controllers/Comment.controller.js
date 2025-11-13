@@ -39,7 +39,7 @@ export const getComments = async(req, res, next) => {
     }
 }
 
-// CommentCount.jsx controller
+// comments.jsx controller
 export const CommentCount = async(req, res, next) => {
     try{
         const {blogid} = req.params
@@ -53,3 +53,32 @@ export const CommentCount = async(req, res, next) => {
         next(handleError(500, error.message))
     }
 }
+
+export const getAllComments = async(req, res, next) => {
+    try{
+       
+        const comments = await Comment.find().populate('blogid','title').populate('user', 'name')
+
+        res.status(200).json({
+            // success: true,
+            comments
+        })
+    }catch(error){
+        next(handleError(500, error.message))
+    }
+}
+
+export const deleteComment = async(req, res, next) => {
+    try{
+        const {commentid} = req.params
+         await Comment.findByIdAndDelete(commentid)
+
+        res.status(200).json({
+            success: true,
+            message: 'Comment deleted.'
+        })
+    }catch(error){
+        next(handleError(500, error.message))
+    }
+}
+

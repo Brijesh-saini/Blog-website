@@ -17,7 +17,7 @@ import { FaBlog } from "react-icons/fa";
 import { FaComments } from "react-icons/fa";
 import { FaUserShield } from "react-icons/fa6";
 import { FaRegCircleDot } from "react-icons/fa6";
-import { RouteBlog, RouteCategoryDetails, RouteIndex } from "@/helpers/RouteName";
+import { RouteBlog, RouteBlogByCategory, RouteCategoryDetails, RouteCommentDetails, RouteIndex, RouteUser } from "@/helpers/RouteName";
 import { useFetch } from "@/hooks/useFetch";
 import getEnv from "@/helpers/getEnv";
 import { useSelector } from "react-redux";
@@ -68,7 +68,7 @@ const AppSidebar = () => {
             <SidebarMenuItem>
               <SidebarMenuButton>
                 <FaComments />
-                <Link to="">Comments</Link>
+                <Link to={RouteCommentDetails}>Comments</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
 
@@ -76,7 +76,7 @@ const AppSidebar = () => {
             <SidebarMenuItem>
               <SidebarMenuButton>
                 <FaUserShield />
-                <Link to="">Users</Link>
+                <Link to={RouteUser}>Users</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -92,7 +92,7 @@ const AppSidebar = () => {
                 <SidebarMenuItem key={category._id}>
                   <SidebarMenuButton>
                     <FaRegCircleDot />
-                    <Link to="">{category.name}</Link>
+                    <Link to={RouteBlogByCategory(category.slug)}>{category.name}</Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
