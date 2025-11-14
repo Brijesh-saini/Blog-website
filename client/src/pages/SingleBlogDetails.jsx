@@ -26,19 +26,19 @@ const SingleBlogDetails = () => {
   if (loading) return <Loading />;
 
   return (
-    <div className="flex justify-between gap-20 ">
+    <div className="md:flex-nowrap flex-wrap flex justify-between gap-20 ">
       {data && data.blog && (
         <>
-          <div className="border rounded w-[70%] p-5">
+          <div className="border rounded md:w-[70%] w-full p-5">
             <h1 className="text-2xl font-bold mb-5">{data.blog.title}</h1>
 
             <div className="flex justify-between items-center">
               <div className="flex justify-between items-center gap-5">
                 <Avatar className="w-6 rounded">
-                  <AvatarImage src={data.blog.author.avatar} />
+                  <AvatarImage src={data.blog.author?.avatar} />
                 </Avatar>
                 <div>
-                    <p className="font-bold">{data.blog.author.name}</p>
+                    <p className="font-bold">{data.blog.author?.name}</p>
                     <p>Date:{moment(data.blog.createdAt).format('DD-MM-YYYY')}</p>
                 </div>
               </div>
@@ -64,7 +64,7 @@ const SingleBlogDetails = () => {
           </div>
         </>
       )}
-      <div className="border rounded w-[30%] p-5">
+      <div className="border rounded md:w-[30%] w-full p-5">
         <RelatedBlog props={{category: category, currentBlog: blog}}/>
       </div>
     </div>

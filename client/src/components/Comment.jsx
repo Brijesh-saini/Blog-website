@@ -43,6 +43,7 @@ const Comment = ({props}) => {
               {
                   //make some changes via cpt
                 method: "post",
+                credentials: 'include',
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify(newValues)
               }

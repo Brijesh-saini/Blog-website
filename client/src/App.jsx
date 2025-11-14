@@ -18,6 +18,8 @@ import BlogByCategory from './pages/Blog/BlogByCategory'
 import SearchResult from './pages/SearchResult'
 import Comments from './pages/Comments'
 import User from './pages/User'
+import AuthRouteProtection from './components/AuthRouteProtection'
+import OnlyAdminAllowed from './components/OnlyAdminAllowed'
 
 const App = () => {
   return (
@@ -27,21 +29,30 @@ const App = () => {
         <Route path={RouteIndex} element={<Layout />} >
           <Route index element={<Index />}/>
 
-          <Route path={RouteProfile} element={<Profile/>} />
-          {/* Blog category */}
-          <Route path={RouteAddCategory} element={<AddCategory/>} />
-          <Route path={RouteCategoryDetails} element={<CategoryDetails/>} />
-          <Route path={RouteEditCategory()} element={<EditCategory/>} />
+          
+         
+          {/* Public Api */}
           <Route path={RouteBlogDetails()} element={<SingleBlogDetails/>} />
           <Route path={RouteBlogByCategory()} element={<BlogByCategory/>} />
           <Route path={RouteSearch()} element={<SearchResult/>} />
-          <Route path={RouteCommentDetails} element={<Comments/>} />
-          <Route path={RouteUser} element={<User/>} />
+          
+
 
           {/* Blog */}
-          <Route path={RouteBlogAdd} element={<AddBlog/>} />
-          <Route path={RouteBlog} element={<BlogDetails/>} />
-          <Route path={RouteBlogEdit()} element={<EditBlog/>} />
+          <Route element={<AuthRouteProtection/>}>
+            <Route path={RouteProfile} element={<Profile/>} />
+            <Route path={RouteBlogAdd} element={<AddBlog/>} />
+            <Route path={RouteBlog} element={<BlogDetails/>} />
+            <Route path={RouteBlogEdit()} element={<EditBlog/>} />
+            <Route path={RouteCommentDetails} element={<Comments/>} />
+          </Route>
+
+          <Route element={<OnlyAdminAllowed/>}>
+            <Route path={RouteAddCategory} element={<AddCategory/>} />
+            <Route path={RouteCategoryDetails} element={<CategoryDetails/>} />
+            <Route path={RouteEditCategory()} element={<EditCategory/>} />
+            <Route path={RouteUser} element={<User/>} />
+          </Route>
 
         </Route>
 
