@@ -17,6 +17,7 @@ const Index = () => {
   if (loading) return <Loading />;
   
   return (
+    // REQUIRED COMMENT: Grid layout ensures equal column widths and consistent spacing for blog cards on all devices.
     <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
       {blogData && blogData.blog.length > 0 ? (
         // Use a stable unique key (prefer _id or id). Avoid passing the whole object as key

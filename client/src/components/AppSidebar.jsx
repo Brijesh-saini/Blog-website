@@ -16,7 +16,6 @@ import { TbCategory } from "react-icons/tb";
 import { FaBlog } from "react-icons/fa";
 import { FaComments } from "react-icons/fa";
 import { FaUserShield } from "react-icons/fa6";
-import { FaRegCircleDot } from "react-icons/fa6";
 import {
   RouteBlog,
   RouteBlogByCategory,
@@ -28,6 +27,7 @@ import {
 import { useFetch } from "@/hooks/useFetch";
 import getEnv from "@/helpers/getEnv";
 import { useSelector } from "react-redux";
+import { FaArrowCircleRight } from "react-icons/fa";
 
 const AppSidebar = () => {
   const user = useSelector((state) => state.user);
@@ -103,14 +103,14 @@ const AppSidebar = () => {
 
         <SidebarGroup>
           {/* Categories */}
-          <SidebarGroupLabel>Categories</SidebarGroupLabel>
+          <SidebarGroupLabel className='text-bold'>Categories</SidebarGroupLabel>
           <SidebarMenu>
             {categoryData &&
               categoryData.category.length > 0 &&
               categoryData.category.map((category) => (
                 <SidebarMenuItem key={category._id}>
                   <SidebarMenuButton>
-                    <FaRegCircleDot />
+                    <FaArrowCircleRight/>
                     <Link to={RouteBlogByCategory(category.slug)}>
                       {category.name}
                     </Link>

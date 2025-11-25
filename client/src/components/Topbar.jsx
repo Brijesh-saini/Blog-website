@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "@/assets/images/logo-white.png";
+import logo from "@/assets/images/logo-whitebg.png"
 import { Button } from "./ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { MdLogin } from "react-icons/md";
@@ -69,7 +69,7 @@ const Topbar = () => {
           <MdOutlineMenu/>
         </button>
         <Link to={RouteIndex}>
-           <img src={logo} className="md:w-auto w-40" />
+           <img src={logo} className="md:w-auto w-45 rounded-xl" />
         </Link>
       </div>
       {/* Search Box */}

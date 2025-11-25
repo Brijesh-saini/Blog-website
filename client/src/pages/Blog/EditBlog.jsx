@@ -70,7 +70,7 @@ const EditBlog = () => {
   useEffect(() => {
     if(blogData ){
       setPreview(blogData.blog.featuredImage)
-      form.setValue('category', blogData.blog.category._id)
+      form.setValue('category', blogData.blog.category?._id)
       form.setValue('title', blogData.blog.title)
       form.setValue('slug', blogData.blog.title)
       form.setValue('slug', blogData.blog.slug)

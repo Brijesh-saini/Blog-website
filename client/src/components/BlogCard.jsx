@@ -15,8 +15,10 @@ const BlogCard = ({ props }) => {
 
   return (
     <Link to={RouteBlogDetails(props.category?.slug, props.slug)}>
-      <Card className="pt-5">
-        <CardContent>
+      {/* Added h-full to the Card to ensure it expands within the grid item */}
+      <Card className="pt-5 h-full transition-shadow duration-300 hover:shadow-lg">
+        {/* Added flex-col and h-full to CardContent to enable consistent vertical layout */}
+        <CardContent className="h-full flex flex-col">
           <div className="flex items-center justify-between">
             <div className="flex justify-between  items-center gap-2 ">
               <Avatar>
@@ -30,15 +32,22 @@ const BlogCard = ({ props }) => {
               </Badge>
             )}
           </div>
-          <div className="my-2">
-            <img src={props.featuredImage} className="rounded" />
+          {/* REQUIRED COMMENT: Fixed image height and applied object-cover for consistent aspect ratio and professional look. */}
+          <div className="my-3 h-48 overflow-hidden rounded">
+            <img 
+              src={props.featuredImage} 
+              className="w-full h-full object-cover" 
+              alt={props.title} 
+            />
           </div>
-          <div>
-            <p className="flex items-center gap-2 mb-2">
+          {/* flex-grow ensures this content section fills remaining space, keeping card titles aligned */}
+          <div className="flex-grow">
+            <p className="flex items-center gap-2 mb-2 text-sm text-gray-500">
               <FaCalendarAlt />
               <span>{moment(props.createdAt).format("DD-MM-YYYY")}</span>
             </p>
-            <h2 className="text-2xl font-bold line-clamp-2">{props.title}</h2>
+            {/* Reduced text size slightly for better fit, ensured line clamping */}
+            <h2 className="text-xl font-bold line-clamp-2">{props.title}</h2>
           </div>
         </CardContent>
       </Card>

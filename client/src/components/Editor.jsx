@@ -363,7 +363,7 @@ export default function Editor(props) {
 	}, [isLayoutReady]);
 
 	return (
-		<div className="main-container">
+		<div className="main-container min-w-[400px] rounded-2xl">
 			<div
 				className="editor-container editor-container_classic-editor editor-container_include-style editor-container_include-block-toolbar editor-container_include-fullscreen"
 				ref={editorContainerRef}
