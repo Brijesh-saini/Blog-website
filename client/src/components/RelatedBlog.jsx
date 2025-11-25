@@ -17,7 +17,7 @@ const RelatedBlog = ({props}) => {
     <div>
         <h2 className='text-2xl font-bold mb-5'>Related Blog</h2>
         <div>
-            {data && data.relatedBlog.length > 0
+            {data && data.relatedBlog && data.relatedBlog.length > 0
                 ?
                 data.relatedBlog.map(blog => {
                     return (

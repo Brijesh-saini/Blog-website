@@ -49,6 +49,7 @@ export const Login = async (req, res, next) => {
         name: user.name,
         email: user.email,
         avatar: user.avatar,
+        role: user.role,    // add via extra
       },
       process.env.JWT_SECRET
     );
@@ -98,6 +99,7 @@ export const GoogleLogin = async (req, res, next) => {
         name: user.name,
         email: user.email,
         avatar: user.avatar,
+        role: user.role,       // add via extra
       },
       process.env.JWT_SECRET
     );

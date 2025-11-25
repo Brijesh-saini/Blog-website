@@ -36,7 +36,7 @@ const Profile = () => {
     data: userData,
     loading,
     error,
-  } = useFetch(`${getEnv("VITE_API_BASE_URL")}/user/get-user/${user.user._id}`, {
+  } = useFetch(`${getEnv("VITE_API_BASE_URL")}/user/get-user/${user.user?._id}`, {
     method: "get",
     credentials: "include",
   });

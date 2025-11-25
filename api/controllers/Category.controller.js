@@ -16,6 +16,10 @@ export const addCategory = async (req, res, next) => {
         })
 
     } catch (error) {
+        // handle duplicate key (unique slug) gracefully
+        if (error && error.code === 11000) {
+            return next(handleError(400, 'Category slug already exists.'))
+        }
         next(handleError(500, error.message))
     }
 }

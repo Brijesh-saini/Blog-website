@@ -144,11 +144,21 @@ export const getRelatedBlog = async(req, res, next) =>{
     const {category, blog } = req.params
     const categoryData = await Category.findOne({slug: category})
     if(!categoryData){
-      return next(404, 'Category data not found.')
+      return next(handleError(404, 'Category data not found.'))
     }
+    
+    // First find the current blog by slug to get its _id
+    const currentBlog = await Blog.findOne({slug: blog})
+    if(!currentBlog){
+      return next(handleError(404, 'Blog not found.'))
+    }
+    
     const categoryId = categoryData._id
-    const relatedBlog = await Blog.find({category: categoryId, slug:{$ne: blog}}).lean().exec()
+    // Find related blogs by category and exclude current blog by _id
+    const relatedBlog = await Blog.find({category: categoryId, _id: {$ne: currentBlog._id}}).lean().exec()
+    
     res.status(200).json({
+      success: true,
       relatedBlog
     })
   } catch (error) {

@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import userReducer from './redux/user/user.slice'
 import sessionStorage from 'redux-persist/es/storage/session'
 import persistReducer from 'redux-persist/es/persistReducer'
-import { getDefaultConfig } from 'tailwind-merge'
+// import { getDefaultConfig } from 'tailwind-merge'
 import persistStore from 'redux-persist/es/persistStore'
 
 const rootReducer = combineReducers({

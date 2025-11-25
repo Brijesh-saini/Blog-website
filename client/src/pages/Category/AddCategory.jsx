@@ -47,6 +47,7 @@ const AddCategory = () => {
             //make some changes via cpt
           method: "post",
           headers: { "Content-type": "application/json" },
+          credentials: 'include',
           body: JSON.stringify(values)
         }
       );

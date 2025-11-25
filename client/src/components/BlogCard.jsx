@@ -14,7 +14,7 @@ const BlogCard = ({ props }) => {
   // const user = useSelector((state) => state.user)
 
   return (
-    <Link to={RouteBlogDetails(props.category.slug, props.slug)}>
+    <Link to={RouteBlogDetails(props.category?.slug, props.slug)}>
       <Card className="pt-5">
         <CardContent>
           <div className="flex items-center justify-between">
